@@ -1,6 +1,6 @@
 all: menu
 
-menu: task1.c task2.c task3.c
+menu: task1.c task2.c task3/task3.c
 	gcc -g -m32 -c -o task3.o task3.c
 	gcc -g -m32  task3.o -o myELF
 	gcc -g -m32 -c -o task2.o task2.c
