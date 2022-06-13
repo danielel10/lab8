@@ -87,27 +87,12 @@ int main(int argc, char **argv){
             Elf32_Shdr* relevent_section = section_header + sh_index;
             int section_header_adress = relevent_section->sh_addr;
             int func_offset = relevent_section->sh_offset + symbole_adress - section_header_adress;
-//            printf("%d\n", symbole_size);
+            FILE *out;
+            out = fopen("test.txt","wb");
+            fwrite(map_start + func_offset, 1, symbole_size , out);
 
         }
 
-
-
-
-//
-//        //here we need to check if its a special section header
-//        if(sh_index > numberOfSections || sh_index == 0){
-//            char* section_index = indexToSectionIndex(sh_index);
-//            printf("[%d]\t%08x\t\t%s\t\t%-25s%-25s\n",i,symbol_table->st_value,section_index,sh_name,st_name);
-//        }
-//        else{
-//            //else we calculate normally the name -> go to str sh table and add the index
-//
-//            Elf32_Shdr* section_entry = map_start + header->e_shoff ;
-//            section_entry = section_entry + sh_index;
-//            sh_name = map_start + section_entry->sh_name + shstrtab_off;
-//            printf("[%d]\t%08x\t\t%d\t\t%-25s%-25s\n",i,symbol_table->st_value,symbol_table->st_shndx,sh_name,st_name);
-//        }
         symbol_table++;
     }
 
